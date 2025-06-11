@@ -1,0 +1,77 @@
+Step-by-Step Testing Guide
+1. Start the Application
+Apply to objective.tx...
+Run
+2. Open Your Web Browser
+Navigate to: http://localhost:3000
+3. Login with Admin Account
+You'll see a login page. Use these credentials:
+Username: admin
+Email: joydaven@gmail.com
+Password: admin123
+4. Explore the Dashboard
+After login, you'll land on the dashboard where you can:
+✅ View your current permissions
+✅ See permission statistics
+✅ Test permission simulation
+✅ Access quick navigation to different modules
+5. Test Different Features
+🔍 Permission Testing
+Go to the "Test Permissions" section on the dashboard
+Select a user (admin), module (Users), and action (read)
+Click "Test Permission" - should show ✅ access granted
+👥 User Management
+Click "Users" in the sidebar
+You should see the admin user listed
+Try the "Add User" button (if you have create permissions)
+🛡️ Access Control Testing
+Try accessing different modules from the sidebar
+Admin should have access to all: Users, Groups, Roles, Modules, Permissions
+🔐 Authentication Testing
+Click the logout button (top right)
+Try accessing http://localhost:3000/users directly
+Should redirect you to login (protected route)
+6. Test Registration
+On login page, click "Don't have an account? Sign up"
+Register a new user:
+Username: testuser
+Email: test@example.com
+Password: password123
+After registration, you'll be logged in but have no permissions
+Try accessing Users page - should show "Access Denied"
+7. Backend API Testing
+You can also test the API directly:
+Health Check
+Visit: http://localhost:5000/api/health
+Should return: {"status":"OK","timestamp":"...","service":"IAM Access Control System"}
+Test API Endpoints (using browser or Postman)
+# Get API info
+GET http://localhost:5000/
+
+# Login (POST request - use Postman/curl)
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+Apply to objective.tx...
+Run
+8. Browser Developer Tools Testing
+Open DevTools (F12)
+Network Tab: See API calls being made
+Application Tab: Check localStorage for JWT token
+Console Tab: Look for any JavaScript errors
+9. Responsive Design Testing
+Resize browser window - interface should adapt
+Mobile view (DevTools device simulation)
+Sidebar should collapse on mobile with hamburger menu
+10. Permission Workflow Testing
+As admin, you can test the full IAM workflow:
+Create a new group (e.g., "Managers")
+Create a new role (e.g., "User Viewer")
+Assign read permission on Users module to the role
+Assign the role to the group
+Add a user to the group
+Test that user's permissions via simulation
